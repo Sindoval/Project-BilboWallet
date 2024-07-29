@@ -1,5 +1,5 @@
-import { ThunkDispatch } from "redux-thunk";
-import { AnyAction } from "redux";
+import { ThunkDispatch } from 'redux-thunk';
+import { AnyAction } from 'redux';
 
 export type ReduxState = {
   walletReducer: {
@@ -8,6 +8,6 @@ export type ReduxState = {
   userReducer: {
     user: '',
   },
-}
+};
 
 export type Dispatch = ThunkDispatch<ReduxState, null, AnyAction>;
