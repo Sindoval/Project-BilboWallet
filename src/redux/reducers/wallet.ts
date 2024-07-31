@@ -1,4 +1,4 @@
-import { REQUEST_COINS, SEND_EXPENSE } from '../actions';
+import { DELETE_EXPENSE, REQUEST_COINS, SEND_EXPENSE } from '../actions';
 import { WalletStateType } from '../../types';
 
 const INITIAL_STATE: WalletStateType = {
@@ -22,6 +22,11 @@ const walletReducer = (state = INITIAL_STATE, action: ActionType) => {
       return {
         ...state,
         expenses: [...state.expenses, action.payload],
+      };
+    case DELETE_EXPENSE:
+      return {
+        ...state,
+        expenses: action.payload,
       };
     default:
       return state;
