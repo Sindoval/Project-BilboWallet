@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchCoins, sendExpense } from '../../redux/actions';
 import { Dispatch, ReduxState, ExpensesTypeForm } from '../../types';
 import fetchAllCoins from '../../utils';
+import './WalletForm.css';
 
 function WalletForm() {
   const [expense, setExpense] = useState<ExpensesTypeForm>({
