@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 import './Table.css';
 import { ReduxState } from '../../types';
-import { deleteExpense } from '../../redux/actions';
+import { deleteExpense, editExpense } from '../../redux/actions';
 
 function Table() {
   const rootState = useSelector((state: ReduxState) => state.wallet.expenses);
   const dispatch = useDispatch();
 
-  const buttonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const buttonDelete = (event: React.MouseEvent<HTMLButtonElement>) => {
     const target = event.target as HTMLButtonElement;
     const buttonName = target.name;
     console.log(buttonName);
@@ -16,6 +16,12 @@ function Table() {
       expense.id !== Number(buttonName)
     ));
     dispatch(deleteExpense(filterState));
+  };
+
+  const buttonEdit = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const target = event.target as HTMLButtonElement;
+    const buttonName = Number(target.name);
+    dispatch(editExpense(buttonName));
   };
 
   return (
@@ -50,11 +56,17 @@ function Table() {
                 <td>{ convTotal }</td>
                 <td>Real</td>
                 <td>
-                  <button>Editar</button>
+                  <button
+                    data-testid="edit-btn"
+                    name={ String(expense.id) }
+                    onClick={ buttonEdit }
+                  >
+                    Editar
+                  </button>
                   <button
                     data-testid="delete-btn"
                     name={ String(expense.id) }
-                    onClick={ buttonClick }
+                    onClick={ buttonDelete }
                   >
                     Excluir
                   </button>

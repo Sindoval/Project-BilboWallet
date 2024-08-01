@@ -5,6 +5,8 @@ export const SEND_EMAIL = 'SEND_EMAIL';
 export const REQUEST_COINS = 'REQUEST_COINS';
 export const SEND_EXPENSE = 'SEND_EXPENSE';
 export const DELETE_EXPENSE = 'DELETE_EXPENSE';
+export const EDIT_EXPENSE = 'EDIT_EXPENSE';
+export const CONFIRM_EDIT = 'CONFIRM_EDIT';
 
 export function sendEmail(email: string) {
   return {
@@ -31,6 +33,20 @@ export function deleteExpense(expenses: ExpensesTypeForm[]) {
   return {
     type: DELETE_EXPENSE,
     payload: expenses,
+  };
+}
+
+export function editExpense(id: number) {
+  return {
+    type: EDIT_EXPENSE,
+    payload: id,
+  };
+}
+
+export function confirmEdit() {
+  return {
+    type: CONFIRM_EDIT,
+    payload: false,
   };
 }
 

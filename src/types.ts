@@ -74,12 +74,18 @@ export type ReduxState = {
   wallet: {
     currencies: string[],
     expenses: ExpensesType[],
+    editor: boolean,
+    idToEdit: number | string,
+    expenseEdit: ExpensesType | null,
   },
 };
 
 export type WalletStateType = {
   currencies: CurrencyType[] | [],
   expenses: ExpensesType[] | [],
+  editor: boolean,
+  idToEdit: number | string,
+  expenseEdit: ExpensesType | null,
 };
 
 export type Dispatch = ThunkDispatch<ReduxState, null, AnyAction>;

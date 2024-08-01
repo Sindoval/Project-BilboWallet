@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCoins, sendExpense } from '../../redux/actions';
+import { confirmEdit, fetchCoins, sendExpense } from '../../redux/actions';
 import { Dispatch, ReduxState, ExpensesTypeForm } from '../../types';
 import fetchAllCoins from '../../utils';
 import './WalletForm.css';
@@ -19,12 +19,38 @@ function WalletForm() {
   const dispatch: Dispatch = useDispatch();
   const rootState = useSelector((state: ReduxState) => state); // Estado global
 
-  useEffect(() => {
+  useEffect(() => { // Responsável por carregar o select de moedas
     const initialFetch = async () => {
       dispatch(fetchCoins());
     };
     initialFetch();
   }, []);
+
+  useEffect(() => { // Responsável pelo edit
+    const { wallet: { expenseEdit } } = rootState;
+
+    if (expenseEdit) {
+      setExpense({
+        id: expenseEdit.id,
+        value: expenseEdit.value,
+        description: expenseEdit.description,
+        currency: expenseEdit.currency,
+        method: expenseEdit.method,
+        tag: expenseEdit.tag,
+        exchangeRates: expenseEdit.exchangeRates,
+      });
+    } else {
+      setExpense({
+        id: rootState.wallet.expenses.length,
+        value: '',
+        description: '',
+        currency: 'USD',
+        method: 'Dinheiro',
+        tag: 'Alimentação',
+        exchangeRates: {},
+      });
+    }
+  }, [rootState.wallet.editor]);
 
   const handleChange = (event:
   React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -32,11 +58,16 @@ function WalletForm() {
     setExpense({ ...expense, [name]: value });
   };
 
-  const buttonClick = async () => {
+  const buttonAdd = async () => {
     const data = await fetchAllCoins();
     dispatch(sendExpense({ ...expense, exchangeRates: data }));
     setExpense({ ...expense, id: idControl, value: '', description: '' });
     setIdControl(idControl + 1);
+  };
+
+  const buttonEdit = () => {
+    dispatch(sendExpense(expense));
+    dispatch(confirmEdit());
   };
 
   return (
@@ -103,8 +134,11 @@ function WalletForm() {
         value={ expense.description }
         onChange={ handleChange }
       />
-
-      <button onClick={ buttonClick }>Adicionar despesa</button>
+      { rootState.wallet.editor ? (
+        <button onClick={ buttonEdit }>Editar despesa</button>
+      ) : (
+        <button onClick={ buttonAdd }>Adicionar despesa</button>
+      )}
     </div>
   );
 }
