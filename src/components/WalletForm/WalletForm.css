@@ -1,8 +1,8 @@
 .wallet-form {
   align-items: center;
-  background-color: rgb(94, 96, 99);
   color: white;
   display: flex;
   height: 3em;
   justify-content: space-evenly;
+  font-size: smaller;
 }

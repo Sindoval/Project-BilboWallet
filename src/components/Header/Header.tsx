@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import './Header.css';
 import { useEffect, useState } from 'react';
 import { ReduxState } from '../../types';
+import pngMoney from '../../images/money-management.png';
 
 type RootState = {
   user: {
@@ -34,9 +35,14 @@ function Header() {
 
   return (
     <header className="header">
-      <p data-testid="email-field">{ email }</p>
-      <p data-testid="total-field">{ expensesSum }</p>
-      <p data-testid="header-currency-field">BRL</p>
+      <div>
+        <p><img src={ pngMoney }/>Bilbo<span className="wallet-word">Wallet</span></p>
+      </div>
+      <div className="details">
+        <p data-testid="email-field">{ email }</p>
+        <p data-testid="total-field">Despesa Total: { expensesSum }</p>
+        <p data-testid="header-currency-field">BRL</p>
+      </div>
     </header>
   );
 }

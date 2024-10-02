@@ -1,6 +1,5 @@
 import { Dispatch, ExpensesTypeForm } from '../../types';
 import fetchAllCoins from '../../utils';
-// Coloque aqui suas actions
 export const SEND_EMAIL = 'SEND_EMAIL';
 export const REQUEST_COINS = 'REQUEST_COINS';
 export const SEND_EXPENSE = 'SEND_EXPENSE';

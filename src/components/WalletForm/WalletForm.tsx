@@ -135,9 +135,19 @@ function WalletForm() {
         onChange={ handleChange }
       />
       { rootState.wallet.editor ? (
-        <button onClick={ buttonEdit }>Editar despesa</button>
+        <button
+          onClick={ buttonEdit }
+          className="btn btn-warning"
+        >
+          Editar despesa
+        </button>
       ) : (
-        <button onClick={ buttonAdd }>Adicionar despesa</button>
+        <button
+          onClick={ buttonAdd }
+          className="btn btn-primary"
+        >
+          Adicionar despesa
+        </button>
       )}
     </div>
   );

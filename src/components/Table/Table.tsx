@@ -10,8 +10,6 @@ function Table() {
   const buttonDelete = (event: React.MouseEvent<HTMLButtonElement>) => {
     const target = event.target as HTMLButtonElement;
     const buttonName = target.name;
-    console.log(buttonName);
-
     const filterState = rootState.filter((expense) => (
       expense.id !== Number(buttonName)
     ));
@@ -60,6 +58,7 @@ function Table() {
                     data-testid="edit-btn"
                     name={ String(expense.id) }
                     onClick={ buttonEdit }
+                    className="btn btn-warning"
                   >
                     Editar
                   </button>
@@ -67,6 +66,7 @@ function Table() {
                     data-testid="delete-btn"
                     name={ String(expense.id) }
                     onClick={ buttonDelete }
+                    className="btn btn-danger"
                   >
                     Excluir
                   </button>
@@ -74,7 +74,6 @@ function Table() {
               </tr>
             );
           })}
-          ;
         </tbody>
       </table>
     </div>

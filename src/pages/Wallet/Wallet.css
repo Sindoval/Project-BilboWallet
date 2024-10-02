@@ -1,0 +1,11 @@
+body {
+  background-image: url('../../images/walletImg.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.wallet {
+  width: 100vw;
+  height: 100vh;
+}

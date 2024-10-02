@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { sendEmail } from '../redux/actions';
+import { sendEmail } from '../../redux/actions';
+import './Login.css';
+import iconMoney from '../../images/money-management.png';
 
 function Login() {
   const [disabled, setDisabled] = useState(true);
@@ -36,9 +38,12 @@ function Login() {
   };
 
   return (
-    <>
-      <h1>Login</h1>
-      <div>
+    <div className="login">
+      <div className="form">
+          <img src={ iconMoney } alt="" /> 
+        <h1>
+          Bilbo<span className="wallet-word">Wallet</span>
+        </h1>
         <form action="">
           <input
             type="email"
@@ -62,12 +67,13 @@ function Login() {
           <button
             disabled={ disabled }
             onClick={ buttonClick }
+            className="btn btn-primary"
           >
             Entrar
           </button>
         </form>
       </div>
-    </>
+    </div>
   );
 }
 

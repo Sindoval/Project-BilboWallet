@@ -1,6 +1,20 @@
 .header {
-  background-color: rgb(54, 48, 48);
   color: white;
   display: flex;
   justify-content: space-around;
+  align-items: center;
+  background-color: rgb(2, 2, 2);
+  opacity: 90%;
+  margin-bottom: 1em;
+}
+
+.details {
+  display: flex;
+  justify-content: space-evenly;
+  width: 40%;
+}
+
+.header img {
+  width: 10%;
+  padding-top: 1em;
 }
